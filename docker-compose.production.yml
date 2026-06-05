@@ -19,7 +19,7 @@ services:
     image: glebusshek/kittygram_backend
     depends_on:
       db:
-      condition: service_healthy
+        condition: service_healthy
     env_file: .env
     volumes:
       - static:/backend_static
@@ -35,6 +35,8 @@ services:
   gateway:
     image: glebusshek/kittygram_gateway
     env_file: .env
+    depends_on:
+      - backend
     volumes:
       - static:/staticfiles
       - media:/mediafiles
